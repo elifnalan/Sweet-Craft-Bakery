@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+.navbar {
+    background-color: #3D2B1F;
+    padding: 12px 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.logo-text {
+    font-family: 'Dancing Script', cursive;
+    color: #F9EDD3;
+    font-size: 26px;
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #F9EDD3;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #C97B5E;
+}
+
+
+@keyframes dreamy {
+    0%,100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 4px #D4A5C9); opacity: 1; }
+    33% { transform: translateY(-4px) scale(1.05); filter: drop-shadow(0 0 10px #D4A5C9) drop-shadow(0 0 20px #F7C5A8); opacity: 0.9; }
+    66% { transform: translateY(-4px) scale(0.97); filter: drop-shadow(0 0 6px #C97B5E); opacity: 0.95; }
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    animation: dreamy 4s ease-in-out infinite;
+}

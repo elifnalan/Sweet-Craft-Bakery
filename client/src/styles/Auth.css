@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-8px);
+    }
+
+    40% {
+        transform: translateX(8px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+/* ── Container with polka dots ── */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #F9EDD3;
+    background-image: radial-gradient(#F7C5A8 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+    margin: 0;
+    padding: 0;
+}
+
+.auth-card {
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 8px 32px rgba(61, 43, 31, 0.12);
+    border-top: 5px solid var(--terracotta);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ── Title & subtitle ── */
+.auth-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--dark-brown);
+    text-align: center;
+    margin-bottom: 0.3rem;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: var(--terracotta);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+/* ── Form fields ── */
+.auth-field {
+    margin-bottom: 1.2rem;
+}
+
+.auth-label {
+    font-weight: 700;
+    color: var(--deep-brown);
+    margin-bottom: 0.3rem;
+    display: block;
+    font-size: 0.9rem;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--peach);
+    border-radius: 10px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    color: var(--dark-brown);
+    background-color: var(--white);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    outline: none;
+}
+
+.auth-input:focus {
+    border-color: var(--terracotta);
+    background-color: var(--soft-pink);
+}
+
+/* ── Show/hide password ── */
+.input-group-btn {
+    display: flex;
+}
+
+.input-group-btn .auth-input {
+    border-radius: 10px 0 0 10px;
+}
+
+.toggle-btn {
+    padding: 0.75rem 1rem;
+    background-color: var(--peach);
+    border: 2px solid var(--peach);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    color: var(--dark-brown);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background-color: var(--warm-orange);
+}
+
+/* ── Button with bounce ── */
+.auth-btn {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: var(--terracotta);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.auth-btn:hover {
+    background-color: var(--deep-brown);
+    animation: bounce 0.4s ease infinite;
+}
+
+/* ── Alerts ── */
+.auth-error {
+    animation: wiggle 0.4s ease;
+}
+
+/* ── Footer link ── */
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--dark-brown);
+}
+
+.auth-footer a {
+    color: var(--terracotta);
+    font-weight: 700;
+}
+
+.auth-footer a:hover {
+    color: var(--deep-brown);
+    text-decoration: underline;
+}
+
+/* ── Emoji ── */
+.auth-emoji {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}

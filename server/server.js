@@ -1,35 +1,19 @@
 // server.js
-// Importing necessary modules
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const path = require('path');
 
 const app = express();
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use(express.json());
 
-const port = 50000;
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
 
-// MySQL connection configuration
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '', 
-    database: 'sc_bakery',
-    port: 3306
-});
-
-// Ensuring the MySQL connection is established
-db.connect((err) => {
-    if (err) {
-        console.error("MySQL connection error:", err);
-        return;
-    }
-});
-
+const port = process.env.PORT || 50000;
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
