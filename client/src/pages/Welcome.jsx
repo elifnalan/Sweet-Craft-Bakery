@@ -6,7 +6,10 @@ function Welcome()
     return(
         <h1>
             This is the welcome page! <br></br>
-             <Link to ="/menu"> Menu </Link>
+             <Link to ="/desserts"> Go to Dessert Menu </Link>
+             <Link to ="/bakeacake"> Go to Bake a Cake </Link>
+             <Link to ="/login"> Login </Link>
+             <Link to ="/register"> Register </Link>
         </h1>
     )
 }
