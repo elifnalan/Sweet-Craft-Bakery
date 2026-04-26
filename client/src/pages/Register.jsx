@@ -60,6 +60,10 @@ function Register() {
                 setError(data.message || 'Registration failed.');
             } else {
                 setSuccess('Registration successful! You can now log in. 🎉');
+                // Redirect to login after a short delay
+                setTimeout(() => {
+                    window.location.href = '/login';
+                }, 2000);
             }
         } catch (err) {
             setError('Could not connect to server. Please try again.');

@@ -56,9 +56,11 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background-color: var(--cream);
-    background-image: radial-gradient(var(--peach) 1.5px, transparent 1.5px);
+    background-color: #F9EDD3;
+    background-image: radial-gradient(#F7C5A8 1.5px, transparent 1.5px);
     background-size: 24px 24px;
+    margin: 0;
+    padding: 0;
 }
 
 .auth-card {
