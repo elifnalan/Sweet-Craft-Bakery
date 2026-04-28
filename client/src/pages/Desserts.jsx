@@ -87,9 +87,6 @@ function Desserts() {
         <div className="desserts-page">
             <h1 className="desserts-title">✨ Desserts ✨</h1>
 
-            <p>Cart items: {cart.length}</p>
-
-
             <ShelfSection label="🥞 Pancakes" items={pancakes} />
             <ShelfSection label="🥐 Baked Goods" items={baked_goods} />
             <ShelfSection label="🎂 Small Cakes" items={small_cakes} />
