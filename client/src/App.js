@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import BakeACake from './pages/BakeACake';
 import Desserts from './pages/Desserts';
 import Cart from './pages/Cart';
+
 import { CartProvider } from './context/CartContext';
 
 function App() {
