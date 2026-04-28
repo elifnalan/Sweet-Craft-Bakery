@@ -1,0 +1,276 @@
+/* ── Hero ── */
+.welcome-hero {
+    min-height: 80vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem 5rem;
+    background-color: #F9EDD3;
+    background-image: radial-gradient(#F7C5A8 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+}
+
+.welcome-emoji-row {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #3D2B1F;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    animation: fadeInUp 0.7s ease forwards;
+}
+
+.welcome-subtitle {
+    font-size: 1.15rem;
+    color: #6B3A28;
+    max-width: 500px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    color: #6B3A28;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.scroll-arrow {
+    font-size: 1.4rem;
+    color: #C97B5E;
+    animation: bounceDown 1.2s ease infinite;
+}
+
+/* ── Action Cards ── */
+.welcome-actions {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 5rem 2rem;
+    background-color: #FFFFFF;
+}
+
+.action-card {
+    background-color: #F9EDD3;
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(61, 43, 31, 0.1);
+    border-top: 4px solid #C97B5E;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.action-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(61, 43, 31, 0.15);
+}
+
+.action-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.action-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #3D2B1F;
+    margin-bottom: 0.8rem;
+}
+
+.action-card p {
+    font-size: 0.95rem;
+    color: #6B3A28;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* ── Buttons ── */
+
+.btn-outline-sweet {
+    padding: 0.85rem 2rem;
+    background-color: transparent;
+    color: #C97B5E;
+    border: 2px solid #C97B5E;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.btn-outline-sweet:hover {
+    background-color: #C97B5E;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+}
+
+/* ── Why Us ── */
+.welcome-why {
+    padding: 5rem 2rem;
+    background-color: #F6E4EC;
+    text-align: center;
+}
+
+.welcome-why h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #3D2B1F;
+    margin-bottom: 3rem;
+}
+
+.why-cards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.why-card {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 220px;
+    box-shadow: 0 4px 16px rgba(61, 43, 31, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.why-card:hover {
+    transform: translateY(-6px);
+}
+
+.why-card-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.why-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: #3D2B1F;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.why-card p {
+    font-size: 0.9rem;
+    color: #6B3A28;
+    line-height: 1.6;
+}
+
+/* ── Featured ── */
+.welcome-featured {
+    padding: 5rem 2rem;
+    background-color: #F9EDD3;
+    text-align: center;
+}
+
+.welcome-featured h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #3D2B1F;
+    margin-bottom: 3rem;
+}
+
+.featured-cards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.featured-card {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 1.5rem;
+    width: 200px;
+    box-shadow: 0 4px 16px rgba(61, 43, 31, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.featured-card:hover {
+    transform: translateY(-6px);
+}
+
+.featured-card-emoji {
+    font-size: 3rem;
+    margin-bottom: 0.8rem;
+}
+
+.featured-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: #3D2B1F;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+.featured-card p {
+    color: #C97B5E;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* ── Footer ── */
+.welcome-footer {
+    background-color: #3D2B1F;
+    color: #F9EDD3;
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+}
+
+.welcome-footer a {
+    color: #F7C5A8;
+    margin: 0 0.8rem;
+    text-decoration: none;
+}
+
+.welcome-footer a:hover {
+    color: #FFFFFF;
+}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceDown {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
