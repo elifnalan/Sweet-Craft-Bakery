@@ -17,3 +17,11 @@ const port = process.env.PORT || 50000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+// for fetching the dessertss from the database and sending it to the client
+app.get('/api/desserts', (req, res) => {
+    db.query('SELECT * FROM desserts', (err, results) => {
+        if (err) return res.status(500).json({ error: err });
+        res.json(results);
+    });
+});
