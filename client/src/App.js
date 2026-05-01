@@ -7,7 +7,7 @@ import Register from './pages/Register';
 import BakeACake from './pages/BakeACake';
 import Desserts from './pages/Desserts';
 import Cart from './pages/Cart';
-import Orders from './pages/Orders';
+
 import { CartProvider } from './context/CartContext';
 
 function App() {
@@ -22,7 +22,6 @@ function App() {
                     <Route path='cart' element={<Cart />} />
                     <Route path='login' element={<Login />} />
                     <Route path='register' element={<Register />} />
-                    <Route path='orders' element={<Orders />} />
                 </Route>
             </Routes>
         </BrowserRouter>
