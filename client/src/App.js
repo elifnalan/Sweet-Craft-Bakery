@@ -8,12 +8,14 @@ import BakeACake from './pages/BakeACake';
 import Desserts from './pages/Desserts';
 import Cart from './pages/Cart';
 import Orders from './pages/Orders';
+import { CartProvider } from './context/CartContext';
 
 function App() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<Layout />}>
+        <CartProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<Layout />}>
                     <Route index element={<Welcome />} />
                     <Route path='bakeacake' element={<BakeACake />} />
                     <Route path='desserts' element={<Desserts />} />
@@ -24,6 +26,7 @@ function App() {
                 </Route>
             </Routes>
         </BrowserRouter>
+        </CartProvider>
     )
 }
 
