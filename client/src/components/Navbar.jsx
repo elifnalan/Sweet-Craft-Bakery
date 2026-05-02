@@ -30,7 +30,6 @@ function Navbar() {
                 </li>
                 {user ? (
                     <>
-                        <li><span className='nav-username'>Hi, {user.name}! 👋</span></li>
                         <li><button className='nav-logout-btn' onClick={logout}>Logout</button></li>
                     </>
                 ) : (

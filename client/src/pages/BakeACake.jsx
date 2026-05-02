@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import '../styles/BakeACake.css';
 import { useCart } from '../context/CartContext';
+import { useUser } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const cakeImages = {
     vanilla_fruit: require('../assets/cake_vanilla.png'),
@@ -26,12 +28,16 @@ function BakeACake() {
     const [result, setResult] = useState(null);
     const [message, setMessage] = useState('');
     const [added, setAdded] = useState(false);
+    const [toast, setToast] = useState('');
+    const [showLoginModal, setShowLoginModal] = useState(false);
+
+    const { user } = useUser();
+    const navigate = useNavigate();
+    const { addToCart } = useCart();
 
     const singleFlavors = ['vanilla', 'strawberry', 'chocolate'];
     const doubleFlavors = ['vanilla', 'strawberry', 'blueberry', 'mint'];
     const singleToppings = ['fruit', 'sprinkles'];
-
-    const { addToCart } = useCart();
 
     const getFlavorEmoji = (f) => {
         const emojis = { vanilla: '🍦', strawberry: '🍓', chocolate: '🍫', blueberry: '🫐', mint: '🌿' };
@@ -58,42 +64,92 @@ function BakeACake() {
         setResult(null);
         setBaking(false);
         setMessage('');
+        setAdded(false);
+        setToast('');
+        setShowLoginModal(false);
+    };
+
+    const handleAddToCart = () => {
+        if (!user) {
+            setShowLoginModal(true);
+            return;
+        }
+
+        addToCart({
+            id: `cake_${flavor}_${layers}_${topping}_${Date.now()}`,
+            name: `${flavor} cake`,
+            description: `${layers} layer cake with ${layers === 1 ? topping : 'chocolate sauce'}${message ? ` — "${message}"` : ''}`,
+            price: layers === 1 ? '$8.00' : '$12.00',
+            img: result,
+            image: `cake_${flavor}_${layers === 1 ? topping : 'double'}.png`,
+            quantity: 1,
+            isCustomCake: true,
+            flavor,
+            layers,
+            topping: layers === 1 ? topping : 'chocolate sauce',
+            message
+        });
+        setAdded(true);
+        setToast('Cake added to cart! 🛒');
+        setTimeout(() => {
+            setAdded(false);
+            setToast('');
+        }, 3000);
     };
 
     return (
         <div className="bake-page">
 
-            {/* twinkling stars */}
-            <div className="star" style={{top:'4%',left:'5%',animationDuration:'2.1s'}}>✦</div>
-            <div className="star" style={{top:'8%',left:'20%',animationDuration:'3.2s',fontSize:'7px'}}>✦</div>
-            <div className="star" style={{top:'3%',left:'70%',animationDuration:'2.7s',fontSize:'14px'}}>✦</div>
-            <div className="star" style={{top:'6%',left:'88%',animationDuration:'1.9s'}}>✦</div>
-            <div className="star" style={{top:'50%',left:'2%',animationDuration:'3.1s'}}>✦</div>
-            <div className="star" style={{top:'55%',left:'96%',animationDuration:'2.4s'}}>✦</div>
+            {/* Login Modal */}
+            {showLoginModal && (
+                <div className="modal-overlay">
+                    <div className="modal-card">
+                        <div className="modal-emoji">🔐</div>
+                        <h3 className="modal-title">Hold on, sweetie!</h3>
+                        <p className="modal-msg">You need to be logged in to add items to your cart.</p>
+                        <div className="modal-buttons">
+                            <button className="modal-login-btn" onClick={() => navigate('/login')}>
+                                Go to Login 🎀
+                            </button>
+                            <button className="modal-back-btn" onClick={() => setShowLoginModal(false)}>
+                                Go Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Toast */}
+            {toast && <div className="bake-toast">{toast}</div>}
+
+            {/* Twinkling stars */}
+            <div className="star" style={{ top: '4%', left: '5%', animationDuration: '2.1s' }}>✦</div>
+            <div className="star" style={{ top: '8%', left: '20%', animationDuration: '3.2s', fontSize: '7px' }}>✦</div>
+            <div className="star" style={{ top: '3%', left: '70%', animationDuration: '2.7s', fontSize: '14px' }}>✦</div>
+            <div className="star" style={{ top: '6%', left: '88%', animationDuration: '1.9s' }}>✦</div>
+            <div className="star" style={{ top: '50%', left: '2%', animationDuration: '3.1s' }}>✦</div>
+            <div className="star" style={{ top: '55%', left: '96%', animationDuration: '2.4s' }}>✦</div>
 
             <h1 className="bake-title">✨ Bake a Cake ✨</h1>
 
-            {/* result screen */}
             {result ? (
                 <div className="result-screen">
-                    <div className="bg-star" style={{top:'5%',left:'8%',fontSize:'8px',animationDuration:'2.1s'}}>✦</div>
-                    <div className="bg-star" style={{top:'10%',left:'80%',fontSize:'6px',animationDuration:'3.2s'}}>✦</div>
-                    <div className="bg-star" style={{top:'80%',left:'5%',fontSize:'10px',animationDuration:'2.7s'}}>✦</div>
-                    <div className="bg-star" style={{top:'85%',left:'88%',fontSize:'7px',animationDuration:'1.9s'}}>✦</div>
-                    <div className="bg-star" style={{top:'50%',left:'3%',fontSize:'8px',animationDuration:'3.5s'}}>✦</div>
-                    <div className="bg-star" style={{top:'45%',left:'93%',fontSize:'6px',animationDuration:'2.3s'}}>✦</div>
+                    <div className="bg-star" style={{ top: '5%', left: '8%', fontSize: '8px', animationDuration: '2.1s' }}>✦</div>
+                    <div className="bg-star" style={{ top: '10%', left: '80%', fontSize: '6px', animationDuration: '3.2s' }}>✦</div>
+                    <div className="bg-star" style={{ top: '80%', left: '5%', fontSize: '10px', animationDuration: '2.7s' }}>✦</div>
+                    <div className="bg-star" style={{ top: '85%', left: '88%', fontSize: '7px', animationDuration: '1.9s' }}>✦</div>
+                    <div className="bg-star" style={{ top: '50%', left: '3%', fontSize: '8px', animationDuration: '3.5s' }}>✦</div>
+                    <div className="bg-star" style={{ top: '45%', left: '93%', fontSize: '6px', animationDuration: '2.3s' }}>✦</div>
 
                     <p className="result-section-label">✦ your creation ✦</p>
-                    <h2 className="result-main-title">Your Magical Cake<br/>is Ready! 🎂</h2>
+                    <h2 className="result-main-title">Your Magical Cake<br />is Ready! 🎂</h2>
 
                     <div className="cake-wrap">
                         <div className="cake-ring"></div>
                         <div className="cake-ring-2"></div>
-
-                  
-                       <img 
-                            src={result} 
-                            alt="Your cake" 
+                        <img
+                            src={result}
+                            alt="Your cake"
                             className={`result-img ${layers === 2 ? 'result-img-double' : ''}`}
                         />
                         <span className="floating-star fs1">✨</span>
@@ -118,27 +174,7 @@ function BakeACake() {
                     <div className="result-divider"></div>
 
                     <div className="result-buttons">
-                        <button 
-                            className="add-cart-btn"
-                            onClick={() => {
-                                addToCart({
-                                    id: `cake_${flavor}_${layers}_${topping}_${Date.now()}`,
-                                    name: `${flavor} cake`,
-                                    description: `${layers} layer cake with ${layers === 1 ? topping : 'chocolate sauce'}${message ? ` — "${message}"` : ''}`,
-                                    price: layers === 1 ? '$8.00' : '$12.00',
-                                    img: result,
-                                    image: `cake_${flavor}_${layers === 1 ? topping : 'double'}.png`,
-                                    quantity: 1,
-                                    isCustomCake: true,
-                                    flavor,
-                                    layers,
-                                    topping: layers === 1 ? topping : 'chocolate sauce',
-                                    message
-                                });
-                                setAdded(true);
-                                setTimeout(() => setAdded(false), 3000);
-                            }}
-                        >
+                        <button className="add-cart-btn" onClick={handleAddToCart}>
                             {added ? '✅ Added to Cart!' : 'Add to Cart 🛒'}
                         </button>
                         <button className="bake-again-btn" onClick={handleReset}>Bake Again ✨</button>
@@ -146,7 +182,6 @@ function BakeACake() {
                 </div>
             ) : (
                 <div className="wizard">
-                    {/* step indicators */}
                     <div className="steps">
                         {steps.map((s, i) => (
                             <React.Fragment key={s}>
@@ -159,8 +194,6 @@ function BakeACake() {
                     </div>
 
                     <div className="wizard-card">
-
-                        {/* Step 1 - Layers */}
                         {step === 1 && (
                             <div className="wizard-step">
                                 <p className="step-title">✦ How many layers?</p>
@@ -180,7 +213,6 @@ function BakeACake() {
                             </div>
                         )}
 
-                        {/* Step 2 - Flavor */}
                         {step === 2 && (
                             <div className="wizard-step">
                                 <p className="step-title">✦ Choose your flavor</p>
@@ -199,7 +231,6 @@ function BakeACake() {
                             </div>
                         )}
 
-                        {/* Step 3 - Topping or Sauce */}
                         {step === 3 && (
                             <div className="wizard-step">
                                 <p className="step-title">
@@ -228,7 +259,6 @@ function BakeACake() {
                             </div>
                         )}
 
-                        {/* Step 4 - Message */}
                         {step === 4 && (
                             <div className="wizard-step">
                                 <p className="step-title">✦ Add a message to your cake?</p>
@@ -249,7 +279,6 @@ function BakeACake() {
                             </div>
                         )}
 
-                        {/* baking effect */}
                         {baking && (
                             <div className="baking-overlay">
                                 <div className="poof">
