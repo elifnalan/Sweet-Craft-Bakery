@@ -10,7 +10,6 @@ router.post('/', (req, res) => {
         return res.status(400).json({ message: 'Missing order details.' });
     }
 
-    // Step 1 - Create the order
     db.query(
         'INSERT INTO orders (user_id, total_price, status) VALUES (?, ?, ?)',
         [user_id, total_price, 'pending'],
@@ -19,7 +18,6 @@ router.post('/', (req, res) => {
 
             const order_id = result.insertId;
 
-            // Step 2 - Insert each cart item into order_items
             const orderItems = items.map(item => [
                 order_id,
                 item.dessert_id || null,
@@ -32,7 +30,6 @@ router.post('/', (req, res) => {
                 [orderItems],
                 (err) => {
                     if (err) return res.status(500).json({ message: 'Could not save order items.' });
-
                     return res.status(201).json({
                         message: 'Order placed successfully!',
                         order_id
@@ -43,7 +40,7 @@ router.post('/', (req, res) => {
     );
 });
 
-// GET /api/orders/:user_id - Get all orders for a user
+// GET /api/orders/:user_id - Get all orders with items for a user
 router.get('/:user_id', (req, res) => {
     const { user_id } = req.params;
 
@@ -55,7 +52,29 @@ router.get('/:user_id', (req, res) => {
         [user_id],
         (err, orders) => {
             if (err) return res.status(500).json({ message: 'Could not fetch orders.' });
-            return res.status(200).json(orders);
+            if (orders.length === 0) return res.status(200).json([]);
+
+            // For each order, fetch its items
+            const orderPromises = orders.map(order => {
+                return new Promise((resolve, reject) => {
+                    db.query(
+                        `SELECT oi.id, oi.dessert_id, oi.custom_cake_id, oi.quantity,
+                                d.name, d.price, d.image
+                         FROM order_items oi
+                         LEFT JOIN desserts d ON oi.dessert_id = d.id
+                         WHERE oi.order_id = ?`,
+                        [order.id],
+                        (err, items) => {
+                            if (err) reject(err);
+                            else resolve({ ...order, items });
+                        }
+                    );
+                });
+            });
+
+            Promise.all(orderPromises)
+                .then(ordersWithItems => res.status(200).json(ordersWithItems))
+                .catch(() => res.status(500).json({ message: 'Could not fetch order items.' }));
         }
     );
 });

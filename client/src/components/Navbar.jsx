@@ -20,6 +20,7 @@ function Navbar() {
                 <li><Link to='/'> Home </Link></li>
                 <li><Link to='/bakeacake'> Bake a Cake </Link></li>
                 <li><Link to='/desserts'> Desserts </Link></li>
+                <li><Link to='/orders'> My Orders </Link></li>
                 <li>
                     <Link to='/cart' className='cart-link'>
                         🛒
