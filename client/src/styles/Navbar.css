@@ -60,3 +60,26 @@
     height: 40px;
     animation: dreamy 4s ease-in-out infinite;
 }
+
+.nav-username {
+    color: #F9EDD3;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 0.9rem;
+}
+
+.nav-logout-btn {
+    background: transparent;
+    color: #F9EDD3;
+    border: 1px solid #F9EDD3;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-logout-btn:hover {
+    background: #C97B5E;
+    border-color: #C97B5E;
+}
