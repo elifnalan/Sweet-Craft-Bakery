@@ -9,23 +9,26 @@ import Desserts from './pages/Desserts';
 import Cart from './pages/Cart';
 
 import { CartProvider } from './context/CartContext';
+import { UserProvider } from './context/UserContext';
 
 function App() {
     return (
-        <CartProvider>
-            <BrowserRouter>
-                <Routes>
-                    <Route path='/' element={<Layout />}>
-                    <Route index element={<Welcome />} />
-                    <Route path='bakeacake' element={<BakeACake />} />
-                    <Route path='desserts' element={<Desserts />} />
-                    <Route path='cart' element={<Cart />} />
-                    <Route path='login' element={<Login />} />
-                    <Route path='register' element={<Register />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-        </CartProvider>
+        <UserProvider>
+            <CartProvider>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path='/' element={<Layout />}>
+                            <Route index element={<Welcome />} />
+                            <Route path='bakeacake' element={<BakeACake />} />
+                            <Route path='desserts' element={<Desserts />} />
+                            <Route path='cart' element={<Cart />} />
+                            <Route path='login' element={<Login />} />
+                            <Route path='register' element={<Register />} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </CartProvider>
+        </UserProvider>
     )
 }
 
