@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Auth.css';
+import { useUser } from '../context/UserContext'; // ← add this
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ function Login() {
     });
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { login } = useUser(); // ← add this
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,11 +47,13 @@ function Login() {
 
             if (!response.ok) {
                 setError(data.message || 'Login failed.');
-            } else {
-                localStorage.setItem('token', data.token);
-                localStorage.setItem('user', JSON.stringify(data.user));
-                navigate('/');
-            }
+            } 
+            else {
+            console.log('Login response:', data); // ← add this
+            localStorage.setItem('token', data.token);
+            login(data.user);
+            navigate('/');
+        }
         } catch (err) {
             setError('Could not connect to server. Please try again.');
         }
@@ -89,5 +93,6 @@ function Login() {
         </div>
     );
 }
+
 
 export default Login;
