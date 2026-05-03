@@ -24,6 +24,34 @@ app.get('/api/desserts', (req, res) => {
     });
 });
 
+// Cake addition is not inserted into the database until the user places the order, 
+// so we handle it in the orders route instead of having a separate endpoint for custom cakes.
+// The client sends the custom cake details as part of the order data, and the server 
+// processes it accordingly when creating the order. This way, we can keep all order-related 
+// logic in one place and avoid unnecessary complexity in our API design.
+app.post('/api/custom-cakes', (req, res) => {
+    const { user_id, flavor, layers, topping } = req.body;
+
+    if (!user_id || !flavor || !layers) {
+        return res.status(400).json({ message: 'Missing cake details.' });
+    }
+
+    db.query(
+        'INSERT INTO custom_cakes (user_id, flavor, layers, topping) VALUES (?, ?, ?, ?)',
+        [user_id, flavor, layers, topping || null],
+        (err, result) => {
+            if (err) {
+                console.log('Custom cake insert error:', err);
+                return res.status(500).json({ message: 'Could not save cake.' });
+            }
+            return res.status(201).json({ 
+                message: 'Cake saved!', 
+                custom_cake_id: result.insertId 
+            });
+        }
+    );
+});
+
 const port = process.env.PORT || 50000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

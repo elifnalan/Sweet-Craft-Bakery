@@ -69,33 +69,54 @@ function BakeACake() {
         setShowLoginModal(false);
     };
 
-    const handleAddToCart = () => {
-        if (!user) {
-            setShowLoginModal(true);
-            return;
-        }
+   const handleAddToCart = async () => {
+    if (!user) {
+        setShowLoginModal(true);
+        return;
+    }
 
-        addToCart({
-            id: `cake_${flavor}_${layers}_${topping}_${Date.now()}`,
-            name: `${flavor} cake`,
-            description: `${layers} layer cake with ${layers === 1 ? topping : 'chocolate sauce'}${message ? ` — "${message}"` : ''}`,
-            price: layers === 1 ? '$8.00' : '$12.00',
-            img: result,
-            image: `cake_${flavor}_${layers === 1 ? topping : 'double'}.png`,
-            quantity: 1,
-            isCustomCake: true,
-            flavor,
-            layers,
-            topping: layers === 1 ? topping : 'chocolate sauce',
-            message
+    let custom_cake_id = null;
+
+    // Save custom cake to database first
+    try {
+        const response = await fetch('http://localhost:50000/api/custom-cakes', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: user.id,
+                flavor,
+                layers,
+                topping: layers === 1 ? topping : 'chocolate sauce'
+            })
         });
-        setAdded(true);
-        setToast('Cake added to cart! 🛒');
-        setTimeout(() => {
-            setAdded(false);
-            setToast('');
-        }, 3000);
-    };
+        const data = await response.json();
+        custom_cake_id = data.custom_cake_id;
+    } catch (err) {
+        console.log('Could not save cake:', err);
+    }
+
+    addToCart({
+        id: custom_cake_id || `cake_${Date.now()}`,
+        name: `${flavor} cake`,
+        description: `${layers} layer cake with ${layers === 1 ? topping : 'chocolate sauce'}${message ? ` — "${message}"` : ''}`,
+        price: layers === 1 ? '$8.00' : '$12.00',
+        img: result,
+        image: `cake_${flavor}_${layers === 1 ? topping : 'double'}.png`,
+        quantity: 1,
+        isCustomCake: true,
+        custom_cake_id,
+        flavor,
+        layers,
+        topping: layers === 1 ? topping : 'chocolate sauce',
+        message
+    });
+    setAdded(true);
+    setToast('Cake added to cart! 🛒');
+    setTimeout(() => {
+        setAdded(false);
+        setToast('');
+    }, 3000);
+};
 
     return (
         <div className="bake-page">

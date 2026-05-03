@@ -99,9 +99,12 @@ function Orders() {
                                             {item.name || 'Custom Cake 🎂'}
                                         </span>
                                         <span className="order-item-qty">x{item.quantity}</span>
-                                        <span className="order-item-price">
-                                            ${item.price ? (item.price * item.quantity).toFixed(2) : '—'}
-                                        </span>
+                                     <span className="order-item-price">
+                                        {item.name 
+                                            ? `$${(item.price * item.quantity).toFixed(2)}`  // dessert
+                                            : `$${parseFloat(order.total_price).toFixed(2)}` // custom cake
+                                        }
+                                    </span>
                                     </div>
                                 ))}
                             </div>
