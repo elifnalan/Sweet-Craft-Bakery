@@ -7,6 +7,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    position: sticky;
 }
 
 .logo {
@@ -16,16 +20,17 @@
     gap: 10px;
 }
 
-.logo-icon {
-    width: 40px;
-    height: 40px;
-}
-
 .logo-text {
     font-family: 'Dancing Script', cursive;
     color: #F9EDD3;
     font-size: 26px;
     margin: 0;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    animation: dreamy 4s ease-in-out infinite;
 }
 
 .nav-links {
@@ -34,6 +39,7 @@
     gap: 30px;
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
 .nav-links a {
@@ -48,23 +54,34 @@
     color: #C97B5E;
 }
 
-
-@keyframes dreamy {
-    0%,100% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 4px #D4A5C9); opacity: 1; }
-    33% { transform: translateY(-4px) scale(1.05); filter: drop-shadow(0 0 10px #D4A5C9) drop-shadow(0 0 20px #F7C5A8); opacity: 0.9; }
-    66% { transform: translateY(-4px) scale(0.97); filter: drop-shadow(0 0 6px #C97B5E); opacity: 0.95; }
+/* ── Cart ── */
+.cart-link {
+    position: relative;
+    font-size: 1.4rem;
 }
 
-.logo-icon {
-    width: 40px;
-    height: 40px;
-    animation: dreamy 4s ease-in-out infinite;
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #C97B5E;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
 }
 
+/* ── User ── */
 .nav-username {
     color: #F9EDD3;
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 0.9rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1rem;
 }
 
 .nav-logout-btn {
@@ -73,8 +90,8 @@
     border: 1px solid #F9EDD3;
     border-radius: 20px;
     padding: 4px 12px;
-    font-family: 'Comfortaa', sans-serif;
-    font-size: 0.85rem;
+    font-family: 'Dancing Script', cursive;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.2s;
 }
@@ -82,4 +99,23 @@
 .nav-logout-btn:hover {
     background: #C97B5E;
     border-color: #C97B5E;
+}
+
+/* ── Animations ── */
+@keyframes dreamy {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+        filter: drop-shadow(0 0 4px #D4A5C9);
+        opacity: 1;
+    }
+    33% {
+        transform: translateY(-4px) scale(1.05);
+        filter: drop-shadow(0 0 10px #D4A5C9) drop-shadow(0 0 20px #F7C5A8);
+        opacity: 0.9;
+    }
+    66% {
+        transform: translateY(-4px) scale(0.97);
+        filter: drop-shadow(0 0 6px #C97B5E);
+        opacity: 0.95;
+    }
 }
