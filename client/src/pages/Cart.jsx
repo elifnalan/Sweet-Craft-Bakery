@@ -27,12 +27,12 @@ function Cart() {
             return;
         }
 
-        const orderData = {
+       const orderData = {
             user_id: user.id,
             total_price: total,
             items: cart.map(item => ({
-                dessert_id: item.id,
-                custom_cake_id: null,
+                dessert_id: item.isCustomCake ? null : item.id,
+                custom_cake_id: item.isCustomCake ? item.custom_cake_id : null,
                 quantity: item.quantity
             }))
         };
