@@ -4,19 +4,13 @@ An interactive bakery website where users can browse desserts, build a custom ca
 
 ## Demo
 
-[Watch the demo video](./docs/demo.mp4)
+- [Welcome page walkthrough](./docs/welcomedemo.mp4)
+- [Browsing desserts](./docs/desserts.mp4)
+- [Building a custom cake](./docs/bakeacakedemo.mp4)
 
-*(GitHub doesn't play video inline in the README — either link to a hosted version (YouTube, Loom) or add the file under `docs/` and link to it like above.)*
+## Screenshot
 
-## Screenshots
-
-| Welcome | Desserts | Bake a Cake |
-|---|---|---|
-| ![Welcome page](./docs/screenshots/welcome.png) | ![Desserts page](./docs/screenshots/desserts.png) | ![Bake a Cake page](./docs/screenshots/bakeacake.png) |
-
-| Cart | Login |
-|---|---|
-| ![Cart page](./docs/screenshots/cart.png) | ![Login page](./docs/screenshots/login.png) |
+![Welcome page](./docs/welcome.png)
 
 ## Features
 
