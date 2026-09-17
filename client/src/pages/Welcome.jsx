@@ -66,22 +66,22 @@ function Welcome() {
                     <div className="featured-card">
                         <div className="featured-card-emoji">🎂</div>
                         <h3>Custom Cake</h3>
-                        <p>From RM 85</p>
+                        <p>From $8</p>
                     </div>
                     <div className="featured-card">
-                        <div className="featured-card-emoji">🧁</div>
-                        <h3>Cupcakes</h3>
-                        <p>From RM 6</p>
+                        <div className="featured-card-emoji">🥐</div>
+                        <h3>Baked Goods </h3>
+                        <p>From $6</p>
                     </div>
                     <div className="featured-card">
-                        <div className="featured-card-emoji">🍪</div>
-                        <h3>Cookies</h3>
-                        <p>From RM 3</p>
+                        <div className="featured-card-emoji">🥞</div>
+                        <h3>Pancakes</h3>
+                        <p>From $3</p>
                     </div>
                     <div className="featured-card">
                         <div className="featured-card-emoji">🍰</div>
-                        <h3>Slice Cakes</h3>
-                        <p>From RM 12</p>
+                        <h3>Small Cakes</h3>
+                        <p>From $12</p>
                     </div>
                 </div>
             </section>
