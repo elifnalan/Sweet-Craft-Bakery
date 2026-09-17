@@ -4,10 +4,11 @@ An interactive bakery website where users can browse desserts, build a custom ca
 
 ## Demo
 
-- [Welcome page walkthrough](./docs/welcomedemo.mp4)
-- [Browsing desserts](./docs/desserts.mp4)
-- [Building a custom cake](./docs/bakeacakedemo.mp4)
 
+![Browsing desserts](./docs/desserts.gif)
+ 
+- [Welcome page walkthrough](./docs/welcomedemo.mp4)
+- [Building a custom cake](./docs/bakeacakedemo.mp4)
 ## Screenshot
 
 ![Welcome page](./docs/welcome.png)
