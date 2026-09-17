@@ -56,6 +56,7 @@ router.post('/login', async (req, res) => {
             }
 
             const user = results[0];
+            console.log('User found:', user); // ← add this
 
             // Compare password
             const match = await bcrypt.compare(password, user.password);
@@ -65,19 +66,20 @@ router.post('/login', async (req, res) => {
 
             // Generate JWT token
             const token = jwt.sign(
-                { id: user.id, username: user.username, email: user.email },
+                { id: user.id, name: user.name, email: user.email }, // ← change user.username to user.name
                 process.env.JWT_SECRET,
                 { expiresIn: '24h' }
             );
 
+            console.log('Sending user:', {id: user.id, name: user.name, email: user.email}); // ← add thi
             return res.status(200).json({
                 token,
-                user: { id: user.id, username: user.username, email: user.email }
+                user: { id: user.id, name: user.name, email: user.email }
             });
         });
     } catch (err) {
         res.status(500).json({ message: 'Server error.' });
-    }
+    } 
 });
 
 module.exports = router;
