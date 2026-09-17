@@ -16,9 +16,7 @@ An interactive bakery website where users can browse desserts, build a custom ca
 
 ![Building a custom cake](./docs/bakeacakedemo.gif)
 
-## Screenshot
 
-![Welcome page](./docs/welcome.png)
 
 ## Features
 
