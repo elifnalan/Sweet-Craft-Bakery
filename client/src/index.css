@@ -53,3 +53,11 @@ a:hover {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F9EDD3;
+    background-image: radial-gradient(#F7C5A8 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+}

@@ -3,7 +3,6 @@ import { createContext, useState, useContext } from 'react';
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-    // Read user from localStorage on startup
     const [user, setUser] = useState(
         JSON.parse(localStorage.getItem('user')) || null
     );
@@ -17,6 +16,8 @@ export function UserProvider({ children }) {
         setUser(null);
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        localStorage.removeItem('cart');
+        window.location.href = '/';
     };
 
     return (
